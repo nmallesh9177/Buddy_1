@@ -1,0 +1,80 @@
+use master
+/************
+Author:Bhaskar Jogi
+Date:18/10/2024
+Name:Code for Supplier DB
+Purpose:This script will create DB and few table in it to store info about supply
+************/
+create database Supplier
+
+use Supplier
+
+--Supplier Master
+create table SupplierMaster
+(
+SID			Integer				Primary Key,
+NAME		Varchar (40)		NOT NULL, 
+CITY		Char(6)				NOT NULL,
+GRADE		Tinyint				NOT NULL check(GRADE>0 and GRADE<=4),
+)
+
+select * from SupplierMaster
+sp_help SupplierMaster
+
+insert into SupplierMaster values(10,'UsmanKhan','Delhi',1)
+insert into SupplierMaster values(20,'Pandu','Hyd',2)
+insert into SupplierMaster values(30,'Nitish','Mumbai',3)
+insert into SupplierMaster values(40,'shiva','Pune',2)
+insert into SupplierMaster values(50,'Ramesh','Goa',4)
+insert into SupplierMaster values(60,'Mallesh','Hyd',1)
+insert into SupplierMaster values(70,'Himanshu','Punjab',4)
+insert into SupplierMaster values(80,'Nagesh','Vizag',3)
+insert into SupplierMaster values(90,'Ramesh','Ooti',3)
+insert into SupplierMaster values(100,'Mallesh','Ranchi',2)
+
+--PartMaster
+create table PartMaster
+(
+PID				TinyInt			Primary Key,
+NAME	        Varchar (40)	NOT NULL,
+PRICE	        Money	        NOT NULL,
+CATEGORY		Tinyint			NOT NULL check(CATEGORY in('1','2','3')),
+QTYONHAND		Integer			NULL,
+)
+
+select * from PartMaster
+
+insert into PartMaster values(1,'Lights',1000,3,800)
+insert into PartMaster values(2,'Battery',1000,2,3000)
+insert into PartMaster values(3,'Engine',5000,1,10000)
+insert into PartMaster values(4,'Tyres',6500,1,2500)
+insert into PartMaster values(5,'Tubes',700,3,7000)
+insert into PartMaster values(6,'Screws',1200,2,200)
+insert into PartMaster values(7,'Brakes',5000,2,2000)
+insert into PartMaster values(8,'WheelCaps',1300,3,1400)
+insert into PartMaster values(9,'Horns',800,1,900)
+insert into PartMaster values(10,'WiperBlades',1350,2,400)
+
+--Supply Details
+create table SupplyDetails
+(
+	PID				TinyInt			Foreign Key references PartMaster(PID),
+	SID				Integer			Foreign Key references SupplierMaster(SID),
+	DATEOFSUPPLY	DateTime		NOT NULL,
+	CITY			Varchar(40)		NOT NULL,
+	QTYSUPPLIED		Integer			NOT NULL,
+)
+
+select * from SupplyDetails
+
+insert into SupplyDetails values(2,30,'2024/10/10','Pune',45)
+insert into SupplyDetails values(3,10,'2024/10/11','Mumbai',30)
+insert into SupplyDetails values(1,40,'2024/10/12','Hyd',120)
+insert into SupplyDetails values(5,20,'2024/10/12','Goa',50)
+insert into SupplyDetails values(4,70,'2024/10/13','Ranchi',70)
+insert into SupplyDetails values(7,100,'2024/10/14','Vizag',25)
+insert into SupplyDetails values(9,60,'2024/10/15','Ooti',100)
+insert into SupplyDetails values(10,80,'2024/10/16','Punjab',160)
+insert into SupplyDetails values(6,50,'2024/10/17','Delhi',150)
+insert into SupplyDetails values(8,90,'2024/10/18','Hyd',270)
+go
