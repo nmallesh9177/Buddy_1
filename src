@@ -78,3 +78,5 @@ insert into SupplyDetails values(10,80,'2024/10/16','Punjab',160)
 insert into SupplyDetails values(6,50,'2024/10/17','Delhi',150)
 insert into SupplyDetails values(8,90,'2024/10/18','Hyd',270)
 go
+
+testing 123
