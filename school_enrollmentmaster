@@ -1,0 +1,9 @@
+--EnrollmentMaster
+create table EnrollmentMaster
+(
+CID				Integer			NOT NULL Foreign Key references CourseMaster(CID),
+SID				Tinyint			NOT NULL Foreign Key references StudentMaster(SID),
+DOE				DateTime		NOT NULL,
+FWF 			Bit				NOT NULL,
+Grade			Char(1)			Null check(Grade in('O','A','B','C')),
+)
