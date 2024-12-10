@@ -1,8 +1,0 @@
---coursemaster
-create table CourseMaster
-(
-CID				Integer			Primary Key,
-CourseName		Varchar(40)		NOT NULL,
-Category		Char(1)			NULL check(Category ='B'or Category='M'or Category='A'),
-Fee				Smallmoney		NOT NULL check(Fee>0),
-)
