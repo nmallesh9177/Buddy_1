@@ -1,0 +1,8 @@
+--StudentMaster
+create table StudentMaster
+(
+	SID				TinyInt			Primary Key,
+	StudentName		Varchar(40)		NOT NULL,
+	Origin			Char(1)			NOT NULL check(Origin='L'or Origin='F'),
+	Type			Char(1)			NOT NULL check(Type='U'or Type='G'),
+)
